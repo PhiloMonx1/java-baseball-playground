@@ -34,4 +34,13 @@ public class StringTest {
         assertThat(actual).containsExactly(1,2);
     }
 
+
+    //요구사항 2
+    @Test
+    void removeParenthesesFromString() {
+        String input = "(1,2)";
+        String actual= input.substring(1,input.length()-1);
+        assertThat(actual).isEqualTo("1,2");
+    }
+
 }
