@@ -4,11 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetTest {
 	private Set<Integer> numbers;
@@ -46,4 +48,19 @@ public class SetTest {
 		assertThat(numbers.contains(number)).isTrue();
 	}
 
+	//요구사항 3
+	@ParameterizedTest
+	@DisplayName("true 와 false 두가지 경우 검증")
+	@CsvSource(value = {"1,2,3:true", "4,5:false"}, delimiter = ':')
+	void containsConditionalRefactoring(String inputNumbers, String expected) {
+		Set<Integer> inputSet = new HashSet<>();
+		for (String numStr : inputNumbers.split(",")) {
+			inputSet.add(Integer.parseInt(numStr));
+		}
+
+		boolean expectedResult = Boolean.parseBoolean(expected);
+		boolean actualResult = numbers.containsAll(inputSet);
+
+		assertEquals(expectedResult, actualResult);
+	}
 }
