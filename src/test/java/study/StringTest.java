@@ -10,4 +10,28 @@ public class StringTest {
         String actual = "abc".replace("b", "d");
         assertThat(actual).isEqualTo("adc");
     }
+
+    //요구사항 1
+    @Test
+    void splitString() {
+        String[] actual = "1,2".split(",");
+        assertThat(actual).contains("1", "2");
+    }
+
+    @Test
+    void splitStringOnlyOne() {
+        String[] actual = "1".split(",");
+        assertThat(actual).containsExactly("1");
+    }
+
+    @Test
+    void splitStringToInt() {
+        String[] input = "1,2".split(",");
+        int[] actual = new int[input.length];
+        for (int i = 0; i < actual.length; i++) {
+            actual[i] = Integer.parseInt(input[i]);
+        }
+        assertThat(actual).containsExactly(1,2);
+    }
+
 }
