@@ -1,8 +1,8 @@
-package study;
+package study.step_01;
 
-import study.constants.Operator;
+import study.step_01.constants.Operator;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class StringCalculator {
 	private Scanner scanner = new Scanner(System.in);

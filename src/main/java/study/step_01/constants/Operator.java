@@ -1,4 +1,4 @@
-package study.constants;
+package study.step_01.constants;
 
 public enum Operator {
 	ADD("+"),
