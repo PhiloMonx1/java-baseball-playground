@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorTest {
@@ -37,4 +38,21 @@ public class StringCalculatorTest {
 		int actual = stringCalculator.calculatorNotPemdas(values);
 		assertThat(actual).isEqualTo(10);
 	}
+
+	@Test
+	@DisplayName("String으로 되어 있는 연산자를 char 형식으로 바꾸기")
+	void getOperator() {
+		char actual = stringCalculator.getOperator("+");
+		assertThat(actual).isEqualTo('+');
+	}
+
+	@Test
+	@DisplayName("getOperator() 예외 발생 : 잘못된 연산자")
+	void getOperatorIllegalArgumentException() {
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> {
+					char actual = stringCalculator.getOperator("@");
+				}).withMessageMatching("잘못된 연산자입니다.");
+	}
+
 }
