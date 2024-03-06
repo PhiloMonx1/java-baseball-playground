@@ -25,18 +25,8 @@ public class StringCalculator {
 		char operator = PLUS;
 
 		for (String value : values){
-
-			if(OPERATOR_PATTERN.matcher(value).matches()){
-				operator = getOperator(value);
-				continue;
-			}
-
-			if(NUMBER_PATTERN.matcher(value).matches()){
-				int operand = Integer.parseInt(value);
-				result = applyOperation(result, operator, operand);
-				operator = PLUS;
-			}
-
+			operator = getOperator(value, operator);
+			result = applyOperation(result, operator, value);
 		}
 		return result;
 	}
@@ -53,6 +43,13 @@ public class StringCalculator {
 		return operator;
 	}
 
+	public char getOperator(String value, char operator) {
+		if( !OPERATOR_PATTERN.matcher(value).matches() ){
+			return operator;
+		}
+		return getOperator(value);
+	}
+
 	public int applyOperation(int result, char operator, int operand) {
 		switch (operator) {
 			case MINUS    -> result -= operand;
@@ -61,6 +58,14 @@ public class StringCalculator {
 			default       -> result += operand;
 		}
 		return result;
+	}
+
+	public int applyOperation(int result, char operator, String value){
+		if(!NUMBER_PATTERN.matcher(value).matches()){
+			return result;
+		}
+		int operand = Integer.parseInt(value);
+		return applyOperation(result, operator, operand);
 	}
 
 }
