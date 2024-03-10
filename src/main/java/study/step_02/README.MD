@@ -17,7 +17,19 @@
 
 > 아래에서 위 순서로 구현
 
+---
+
 - 첫번째 인자 = position, 두번째 인자 = targetNumber
 - (1, 1), (1, 1) - 스트라이크
 - (1, 1), (2, 1) - 볼
 - (1, 1), (2, 2) - 낫싱
+> 클리어 [Ball.java](Ball.java), [BallTest.java](..%2F..%2F..%2F..%2Ftest%2Fjava%2Fstudy%2Fstep_02%2FBallTest.java)
+
+---
+ 
+- (1, 2, 3), (1, 1) -> 스트라이크
+- (1, 2, 3), (1, 2) -> 볼
+- (1, 2, 3), (1, 4) -> 낫싱
+> 클리어 [Balls.java](Balls.java), [BallsTest.java](..%2F..%2F..%2F..%2Ftest%2Fjava%2Fstudy%2Fstep_02%2FBallsTest.java)
+
+---
