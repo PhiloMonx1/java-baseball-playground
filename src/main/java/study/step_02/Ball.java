@@ -12,12 +12,15 @@ public class Ball {
 		if(isEquals(ball)){
 			return BallStatus.STRIKE;
 		}
-		if(targetNumber == ball.targetNumber){
+		if(isMatchTargetNumber(ball.targetNumber)){
 			return BallStatus.BALL;
 		}
 		return BallStatus.NOTHING;
 	}
 
+	public boolean isMatchTargetNumber(int targetNumber) {
+		return this.targetNumber == targetNumber;
+	}
 	public boolean isEquals(Ball ball) {
 		return position == ball.position && targetNumber == ball.targetNumber;
 	}
