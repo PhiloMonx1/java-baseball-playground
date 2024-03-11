@@ -16,22 +16,17 @@ public class Balls {
 		this.balls = balls;
 	}
 	public BallStatus play(Ball userBall) {
-		if(containPositionAndNumber(userBall)){
+		List<BallStatus> ballStatuses = new ArrayList<>(balls.size());
+
+		for (Ball ComputerBall : balls) {
+			ballStatuses.add(ComputerBall.play(userBall));
+		}
+		if(ballStatuses.contains(BallStatus.STRIKE)){
 			return BallStatus.STRIKE;
 		}
-		if(containTargetNumber(userBall.targetNumber)){
+		if(ballStatuses.contains(BallStatus.BALL)){
 			return BallStatus.BALL;
 		}
 		return BallStatus.NOTHING;
-	}
-
-	public boolean containTargetNumber(int targetNumber) {
-		return balls.stream()
-				.anyMatch(value -> value.targetNumber == targetNumber);
-	}
-
-	public boolean containPositionAndNumber(Ball ball) {
-		return balls.stream()
-				.anyMatch(value -> value.position == ball.position && value.targetNumber == ball.targetNumber);
 	}
 }
