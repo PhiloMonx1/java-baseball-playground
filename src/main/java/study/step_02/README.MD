@@ -33,3 +33,7 @@
 > 클리어 [Balls.java](Balls.java), [BallsTest.java](..%2F..%2F..%2F..%2Ftest%2Fjava%2Fstudy%2Fstep_02%2FBallsTest.java)
 
 ---
+- (1, 2, 3), (1, 2, 3) -> 3스트라이크
+- (1, 2, 3), (3, 2, 1) -> 3볼
+- (1, 2, 3), (2, 1, 3) -> 1스트라이크 2볼
+- (1, 2, 3), (4, 5, 6) -> 낫싱
