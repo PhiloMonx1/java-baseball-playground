@@ -16,17 +16,10 @@ public class Balls {
 		this.balls = balls;
 	}
 	public BallStatus play(Ball userBall) {
-		List<BallStatus> ballStatuses = new ArrayList<>(balls.size());
-
-		for (Ball ComputerBall : balls) {
-			ballStatuses.add(ComputerBall.play(userBall));
-		}
-		if(ballStatuses.contains(BallStatus.STRIKE)){
-			return BallStatus.STRIKE;
-		}
-		if(ballStatuses.contains(BallStatus.BALL)){
-			return BallStatus.BALL;
-		}
-		return BallStatus.NOTHING;
+		return balls.stream()
+				.map(computerBall -> computerBall.play(userBall))
+				.filter(status -> status == BallStatus.STRIKE || status == BallStatus.BALL)
+				.findFirst()
+				.orElse(BallStatus.NOTHING);
 	}
 }
