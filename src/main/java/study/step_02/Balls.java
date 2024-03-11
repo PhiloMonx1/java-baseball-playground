@@ -1,15 +1,22 @@
 package study.step_02;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Balls {
-	private final int[] ballNumbers;
+	public final List<Ball> balls;
 	public Balls(int[] ballNumbers) {
-		this.ballNumbers = ballNumbers;
+		List<Ball> balls = new ArrayList<>(ballNumbers.length);
+
+		for (int i = 0; i < ballNumbers.length; i++) {
+			Ball ball = new Ball(i+1, ballNumbers[i]);
+			balls.add(ball);
+		}
+
+		this.balls = balls;
 	}
 	public BallStatus play(Ball userBall) {
-		if(isEquals(userBall)){
+		if(containPositionAndNumber(userBall)){
 			return BallStatus.STRIKE;
 		}
 		if(containTargetNumber(userBall.targetNumber)){
@@ -19,11 +26,12 @@ public class Balls {
 	}
 
 	public boolean containTargetNumber(int targetNumber) {
-		return Arrays.stream(ballNumbers).anyMatch(ballNumber -> ballNumber == targetNumber);
+		return balls.stream()
+				.anyMatch(value -> value.targetNumber == targetNumber);
 	}
 
-	public boolean isEquals(Ball ball) {
-		return IntStream.range(0, ballNumbers.length)
-				.anyMatch(index -> (ball.position == index + 1) && (ball.targetNumber == ballNumbers[index]));
+	public boolean containPositionAndNumber(Ball ball) {
+		return balls.stream()
+				.anyMatch(value -> value.position == ball.position && value.targetNumber == ball.targetNumber);
 	}
 }
